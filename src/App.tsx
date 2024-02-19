@@ -24,6 +24,12 @@ export default function page() {
         Number(a.time.replace(/\//g, "").replace(" ", "").replace(":", "")) - Number(b.time.replace(/\//g, "").replace(" ", "").replace(":", ""))
       )))
     }
+    window.scrollTo(0,0)
+  }
+  
+  async function handleKeyWord(v: string){
+    setKeyWord(v)
+    window.scrollTo(0,0)
   }
 
   useEffect(()=> {
@@ -53,14 +59,14 @@ export default function page() {
           <nav className="flex flex-wrap justify-center p-4 my-4">
             <button onClick={()=> sortData('near')}>時間(進~遠)</button>
             <button onClick={()=> sortData('far')}>時間(遠~進)</button>
-            <button onClick={()=> setKeyWord('')}>全部新聞</button>
-            <button onClick={()=> setKeyWord('壹蘋果')}>壹蘋果</button>
-            <button onClick={()=> setKeyWord('ETtoday')}>ETtoday</button>
-            <button onClick={()=> setKeyWord('民視')}>民視</button>
-            <button onClick={()=> setKeyWord('Newtalk')}>Newtalk</button>
-            <button onClick={()=> setKeyWord('三立')}>三立</button>
-            <button onClick={()=> setKeyWord('風傳媒')}>風傳媒</button>
-            <button onClick={()=> setKeyWord('台視')}>台視</button>
+            <button onClick={()=> handleKeyWord('')}>全部新聞</button>
+            <button onClick={()=> handleKeyWord('壹蘋果')}>壹蘋果</button>
+            <button onClick={()=> handleKeyWord('ETtoday')}>ETtoday</button>
+            <button onClick={()=> handleKeyWord('民視')}>民視</button>
+            <button onClick={()=> handleKeyWord('Newtalk')}>Newtalk</button>
+            <button onClick={()=> handleKeyWord('三立')}>三立</button>
+            <button onClick={()=> handleKeyWord('風傳媒')}>風傳媒</button>
+            <button onClick={()=> handleKeyWord('台視')}>台視</button>
           </nav>
         </header>
         <span className="block h-[180px] md:h-[100px]"></span>
