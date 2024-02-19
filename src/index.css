@@ -15,6 +15,11 @@ button {
   cursor: pointer;
   color: #fff;
 }
+@media( width >= 1280px){
+  button {
+    margin: 0 8px;
+  }
+}
 
 button:hover {
   color: #000;

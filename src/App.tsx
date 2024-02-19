@@ -48,9 +48,9 @@ export default function page() {
       </span> 
     :
       <>
-        <header>
+        <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
           <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
-          <nav className="flex justify-center p-4 mt-6">
+          <nav className="flex flex-wrap justify-center p-4 my-4">
             <button onClick={()=> sortData('near')}>時間(進~遠)</button>
             <button onClick={()=> sortData('far')}>時間(遠~進)</button>
             <button onClick={()=> setKeyWord('')}>全部新聞</button>
@@ -63,17 +63,20 @@ export default function page() {
             <button onClick={()=> setKeyWord('台視')}>台視</button>
           </nav>
         </header>
+        <span className="block h-[180px] md:h-[100px]"></span>
         {data?.filter(event=> keyWord ? (event.name === keyWord) : true )
           .map(event=> (
             <article key={crypto.randomUUID()} className="w-full flex justify-center">
-              <a href={event.link} target="_blank" className='flex w-[80%] m-3 p-2 text-[18px] text-[#fff] border-b-2 border-[#bbb] font-bold hover:bg-[#ddd] hover:text-[#000]'>
-                <time className="text-[12px] leading-[25px]">
+              <a href={event.link} target="_blank" className='flex w-full md:w-[80%] m-3 p-2 md:text-[18px] text-[#fff] border-b-2 border-[#bbb] font-bold hover:bg-[#ddd] hover:text-[#000] items-center'>
+                <time className="text-[12px] leading-[25px] w-[30px] md:w-[70px]">
                   {event.time}
                 </time>
-                <h2 className="mx-5 text-[14px] leading-[25px] px-1" style={{background: `${event.color}`}}>
+                <h2 className="mx-2 md:mx-5 md:text-[14px] text-center leading-[25px] px-1 h-[25px] overflow-hidden w-[70px]" style={{background: `${event.color}`}}>
                   {event.name}
                 </h2>
-                <h3>{event.title.substring(0, 30) + "..."}</h3>
+                <h3 className="w-[260px] md:w-auto">
+                  {event.title.substring(0, 30) + "..."}
+                </h3>
               </a>
             </article>
           ))}
