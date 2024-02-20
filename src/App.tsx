@@ -57,8 +57,8 @@ export default function page() {
         <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
           <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
           <nav className="flex flex-wrap justify-center p-4 my-4">
-            <button onClick={()=> sortData('near')}>時間(進~遠)</button>
-            <button onClick={()=> sortData('far')}>時間(遠~進)</button>
+            <button onClick={()=> sortData('near')}>時間(進)</button>
+            <button onClick={()=> sortData('far')}>時間(遠)</button>
             <button onClick={()=> handleKeyWord('')}>全部新聞</button>
             <button onClick={()=> handleKeyWord('壹蘋果')}>壹蘋果</button>
             <button onClick={()=> handleKeyWord('ETtoday')}>ETtoday</button>
