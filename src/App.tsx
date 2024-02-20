@@ -69,6 +69,7 @@ export default function page() {
             <button onClick={()=> handleKeyWord('台視')}>台視</button>
             <button onClick={()=> handleKeyWord('自由時報')}>自由時報</button>
             <button onClick={()=> handleKeyWord('東森')}>東森</button>
+            <button onClick={()=> handleKeyWord('中時')}>中時</button>
           </nav>
         </header>
         <span className="block h-[180px] md:h-[100px]"></span>
