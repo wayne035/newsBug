@@ -1,4 +1,5 @@
 import { useEffect,useState } from "react"
+import Button from "./components/Button"
 
 interface News{
   name: string,
@@ -13,8 +14,8 @@ export default function page() {
   const [keyWord, setKeyWord] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  async function handleKeyWord(v: string){
-    setKeyWord(v)
+  async function handleKeyWord(keyword: string){
+    setKeyWord(keyword)
     window.scrollTo(0,0)
   }
 
@@ -43,17 +44,7 @@ export default function page() {
         <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
           <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
           <nav className="flex flex-wrap justify-center p-4 my-4">
-            <button onClick={()=> handleKeyWord('')}>全部新聞</button>
-            <button onClick={()=> handleKeyWord('壹蘋果')}>壹蘋果</button>
-            <button onClick={()=> handleKeyWord('ETtoday')}>ETtoday</button>
-            <button onClick={()=> handleKeyWord('民視')}>民視</button>
-            <button onClick={()=> handleKeyWord('Newtalk')}>Newtalk</button>
-            <button onClick={()=> handleKeyWord('三立')}>三立</button>
-            <button onClick={()=> handleKeyWord('風傳媒')}>風傳媒</button>
-            <button onClick={()=> handleKeyWord('台視')}>台視</button>
-            <button onClick={()=> handleKeyWord('自由時報')}>自由時報</button>
-            <button onClick={()=> handleKeyWord('東森')}>東森</button>
-            <button onClick={()=> handleKeyWord('中時')}>中時</button>
+            <Button handleKeyWord={handleKeyWord}/>
           </nav>
         </header>
         <span className="block h-[180px] md:h-[100px]"></span>
