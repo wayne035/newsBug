@@ -43,11 +43,11 @@ export default function page() {
       <>
         <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
           <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
-          <nav className="flex flex-wrap justify-center p-4 my-4">
+          <nav className="flex flex-wrap justify-start lg:justify-center p-4 lg:my-4">
             <Button handleKeyWord={handleKeyWord}/>
           </nav>
         </header>
-        <span className="block h-[180px] md:h-[100px]"></span>
+        <span className="block h-[180px] md:h-[120px]"></span>
         {data?.filter(event=> keyWord ? (event.name === keyWord) : true )
           .map(event=> (
             <article key={crypto.randomUUID()} className="w-full flex justify-center">
