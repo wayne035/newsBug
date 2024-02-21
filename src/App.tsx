@@ -1,6 +1,6 @@
 import { useEffect,useState } from "react"
 
-interface Book{
+interface News{
   name: string,
   link: string,
   time: string,
@@ -9,24 +9,10 @@ interface Book{
 }
 
 export default function page() {
-  const [data, setData] = useState([] as Book[])
+  const [data, setData] = useState([] as News[])
   const [keyWord, setKeyWord] = useState('')
   const [isLoading, setIsLoading] = useState(true)
 
-  async function sortData(v: string){
-    if(v === 'near'){
-      setData([...data].sort((a, b)=>(
-        Number(b.time.replace(/\//g, "").replace(" ", "").replace(":", "")) - Number(a.time.replace(/\//g, "").replace(" ", "").replace(":", ""))
-      )))
-    }
-    if(v === 'far'){
-      setData([...data].sort((a, b)=>(
-        Number(a.time.replace(/\//g, "").replace(" ", "").replace(":", "")) - Number(b.time.replace(/\//g, "").replace(" ", "").replace(":", ""))
-      )))
-    }
-    window.scrollTo(0,0)
-  }
-  
   async function handleKeyWord(v: string){
     setKeyWord(v)
     window.scrollTo(0,0)
@@ -57,8 +43,6 @@ export default function page() {
         <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
           <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
           <nav className="flex flex-wrap justify-center p-4 my-4">
-            <button onClick={()=> sortData('near')}>時間(近)</button>
-            <button onClick={()=> sortData('far')}>時間(遠)</button>
             <button onClick={()=> handleKeyWord('')}>全部新聞</button>
             <button onClick={()=> handleKeyWord('壹蘋果')}>壹蘋果</button>
             <button onClick={()=> handleKeyWord('ETtoday')}>ETtoday</button>
@@ -76,7 +60,7 @@ export default function page() {
         {data?.filter(event=> keyWord ? (event.name === keyWord) : true )
           .map(event=> (
             <article key={crypto.randomUUID()} className="w-full flex justify-center">
-              <a href={event.link} target="_blank" className='flex w-full md:w-[80%] m-3 p-2 md:text-[18px] text-[#fff] border-b-2 border-[#bbb] font-bold hover:bg-[#ddd] hover:text-[#000] items-center'>
+              <a href={event.link} target="_blank" title={event.title} className='flex w-full md:w-[80%] m-3 p-2 md:text-[18px] text-[#fff] border-b-2 border-[#bbb] font-bold hover:bg-[#ddd] hover:text-[#000] items-center'>
                 <time className="text-[12px] leading-[25px] w-[30px] md:w-[70px]">
                   {event.time}
                 </time>
