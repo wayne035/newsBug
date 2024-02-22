@@ -37,6 +37,7 @@ export default memo(function Button({setIsAllNews, setOtherData, setIsLoading}: 
     window.scrollTo(0, 0)
     if(newsName === 'all'){
       setIsAllNews(true)
+      setCurrentNewsName(newsName)
     }else{
       setIsLoading(true)
       try{
