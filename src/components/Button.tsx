@@ -19,7 +19,8 @@ const btnData = [
   {'name': '台視', 'en': 'ttv'},
   {'name': '自由時報', 'en': 'ltn'},
   {'name': '東森', 'en': 'ebc'},
-  {'name': '中時', 'en': 'ct'}
+  {'name': '中時', 'en': 'ct'},
+  {'name': '聯合', 'en': 'udn'}
 ]
 
 interface ButtonProps {
