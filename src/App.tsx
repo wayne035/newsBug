@@ -20,10 +20,11 @@ export default function page() {
   const [page, setPage] = useState(0)
 
   async function getAllData(page: string|number){
-    if(allData.length < 520){
+    if(allData.length < 1100){
       try{
         const res = await fetch(import.meta.env.VITE_URL + `/${page}`)
         const data = await res.json()
+        if ( data.length === 0 ) return setHasMore(false)
         setAllData(pre=> [...pre, ...data])
       }catch(e){
           console.log((e as Error).message)
