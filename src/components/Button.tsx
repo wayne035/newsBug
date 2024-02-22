@@ -9,7 +9,17 @@ interface News{
 }
 
 const btnData = [
-    '全部新聞','壹蘋果','ETtoday','民視','Newtalk','三立','風傳媒','台視','自由時報','東森','中時'
+  {'name': '全部新聞', 'en': 'all'},
+  {'name': '壹蘋果', 'en': 'apple'},
+  {'name': 'ETtoday', 'en': 'ettoday'},
+  {'name': '民視', 'en': 'ftv'},
+  {'name': 'Newtalk', 'en': 'newtalk'},
+  {'name': '三立', 'en': 'setn'},
+  {'name': '風傳媒', 'en': 'storm'},
+  {'name': '台視', 'en': 'ttv'},
+  {'name': '自由時報', 'en': 'ltn'},
+  {'name': '東森', 'en': 'ebc'},
+  {'name': '中時', 'en': 'ct'}
 ]
 
 interface ButtonProps {
@@ -20,7 +30,7 @@ interface ButtonProps {
 export default function Button({setIsAllNews, setOtherData}: ButtonProps) {
   async function handleNews(newsName: string) {
     window.scrollTo(0, 0)
-    if(newsName === '全部新聞'){
+    if(newsName === 'all'){
       setIsAllNews(true)
     }else{
       try{
@@ -36,11 +46,11 @@ export default function Button({setIsAllNews, setOtherData}: ButtonProps) {
 
   return (
     <>
-      {btnData.map((newsName: string) =>(
+      {btnData.map(({name, en}) =>(
         <button key={crypto.randomUUID()} 
-                onClick={()=> handleNews(newsName)}
+                onClick={()=> handleNews(en)}
         >
-          {newsName}
+          {name}
         </button>
       ))}
     </>
