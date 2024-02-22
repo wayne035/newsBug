@@ -42,21 +42,21 @@ export default function page() {
     <>
       <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
         <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
-        <nav className="flex flex-wrap justify-start lg:justify-center p-4 lg:my-4">
+        <nav className="flex flex-wrap justify-center p-4 lg:my-4">
           <Button setIsAllNews={setIsAllNews} 
                   setOtherData={setOtherData}
                   setIsLoading={setIsLoading}
           />
         </nav>
       </header>
-      <span className="block h-[180px] md:h-[120px]"></span>
+      <span className="block h-[180px] md:h-[115px]"></span>
         {isAllNews ? (
             <InfiniteScroll 
               dataLength={allData.length} 
               next={()=> setPage(prev => prev += 1)}
               hasMore={hasMore} 
               loader={
-                <span className="text-[#fff] text-[108px] font-bold w-full text-center block"> 
+                <span className="text-[#fff] md:text-[108px] font-bold w-full text-center block"> 
                   載入中......
                 </span>
               }
@@ -65,7 +65,9 @@ export default function page() {
             </InfiniteScroll>
           ):(
             isLoading ? 
-              <span className="text-[#fff] text-[108px] font-bold w-full text-center block">載入中......</span>
+              <span className="text-[#fff] md:text-[108px] font-bold w-full text-center block">
+                載入中......
+              </span>
               : <Article data={otherData}/>
           )
         }

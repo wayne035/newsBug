@@ -6,14 +6,13 @@
 body{background: #000;}
 
 button {
-  background: #555;
   padding: 6px 0;
   font-weight: 900;
   border: 1px solid #bbb;
   margin: 3.5px;
   cursor: pointer;
   color: #fff;
-  width: 80px;
+  width: 75px;
 }
 @media( width >= 1280px){
   button {
@@ -23,7 +22,6 @@ button {
 
 button:hover {
   color: #000;
-  background: #888;
 }
 
 button:active {
