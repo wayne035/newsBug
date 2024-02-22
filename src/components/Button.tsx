@@ -13,16 +13,15 @@ const btnData = [
 ]
 
 interface ButtonProps {
-    handleKeyWord: (keyword: string) => Promise<void>,
     setIsAllNews: React.Dispatch<React.SetStateAction<boolean>>
     setOtherData: React.Dispatch<React.SetStateAction<News[]>>
 }
 
-export default function Button({handleKeyWord, setIsAllNews, setOtherData}: ButtonProps) {
+export default function Button({setIsAllNews, setOtherData}: ButtonProps) {
   async function handleNews(newsName: string) {
+    window.scrollTo(0, 0)
     if(newsName === '全部新聞'){
       setIsAllNews(true)
-      handleKeyWord('')
     }else{
       try{
         const res = await fetch(import.meta.env.VITE_URL + `/${newsName}`)
@@ -31,7 +30,6 @@ export default function Button({handleKeyWord, setIsAllNews, setOtherData}: Butt
       }catch(e){
           console.log((e as Error).message)
       }
-      handleKeyWord(newsName)
       setIsAllNews(false)
     }
   }

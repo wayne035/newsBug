@@ -14,15 +14,9 @@ interface News{
 export default function page() {
   const [allData, setAllData] = useState([] as News[])
   const [otherData, setOtherData] = useState([] as News[])
-  const [keyWord, setKeyWord] = useState('')
   const [hasMore, setHasMore] = useState(true)
   const [isAllNews, setIsAllNews] = useState(true)
   const [page, setPage] = useState(0)
-
-  async function handleKeyWord(keyword: string){
-    setKeyWord(keyword)
-    window.scrollTo(0,0)
-  }
 
   async function getAllData(page: string|number){
     if(allData.length < 520){
@@ -41,15 +35,14 @@ export default function page() {
 
   useEffect(()=> {
     getAllData(page)
-  },[page, isAllNews])
+  },[page])
 
   return (
     <>
       <header className="fixed bg-[#000] border-b-2 top-0 left-0 w-full">
         <h1 className="absolute top-0 left-0 text-transparent">newsBug</h1>
         <nav className="flex flex-wrap justify-start lg:justify-center p-4 lg:my-4">
-          <Button handleKeyWord={handleKeyWord} 
-                  setIsAllNews={setIsAllNews} 
+          <Button setIsAllNews={setIsAllNews} 
                   setOtherData={setOtherData}
           />
         </nav>
@@ -66,10 +59,10 @@ export default function page() {
                 </span>
               }
             >
-              <Article data={allData} keyWord={keyWord}/>
+              <Article data={allData}/>
             </InfiniteScroll>
           ):(
-            <Article data={otherData} keyWord={keyWord}/>
+            <Article data={otherData}/>
           )
         }
       <footer className="text-[#fff] w-full text-center py-8 font-black">
