@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ memo } from "react";
 
 interface News{
   name: string,
@@ -25,18 +25,21 @@ const btnData = [
 interface ButtonProps {
     setIsAllNews: React.Dispatch<React.SetStateAction<boolean>>
     setOtherData: React.Dispatch<React.SetStateAction<News[]>>
+    setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
 
-export default function Button({setIsAllNews, setOtherData}: ButtonProps) {
+export default memo(function Button({setIsAllNews, setOtherData, setIsLoading}: ButtonProps) {
   async function handleNews(newsName: string) {
     window.scrollTo(0, 0)
     if(newsName === 'all'){
       setIsAllNews(true)
     }else{
+      setIsLoading(true)
       try{
         const res = await fetch(import.meta.env.VITE_URL + `/${newsName}`)
         const data = await res.json()
         setOtherData(data)
+        setIsLoading(false)
       }catch(e){
           console.log((e as Error).message)
       }
@@ -47,12 +50,10 @@ export default function Button({setIsAllNews, setOtherData}: ButtonProps) {
   return (
     <>
       {btnData.map(({name, en}) =>(
-        <button key={crypto.randomUUID()} 
-                onClick={()=> handleNews(en)}
-        >
+        <button key={crypto.randomUUID()} onClick={()=> handleNews(en)}>
           {name}
         </button>
       ))}
     </>
   )
-}
+})

@@ -14,6 +14,7 @@ interface News{
 export default function page() {
   const [allData, setAllData] = useState([] as News[])
   const [otherData, setOtherData] = useState([] as News[])
+  const [isLoading, setIsLoading] = useState(true)
   const [hasMore, setHasMore] = useState(true)
   const [isAllNews, setIsAllNews] = useState(true)
   const [page, setPage] = useState(0)
@@ -23,7 +24,7 @@ export default function page() {
       try{
         const res = await fetch(import.meta.env.VITE_URL + `/${page}`)
         const data = await res.json()
-        setAllData(pre => [...pre, ...data])
+        setAllData(pre=> [...pre, ...data])
       }catch(e){
           console.log((e as Error).message)
       }
@@ -44,6 +45,7 @@ export default function page() {
         <nav className="flex flex-wrap justify-start lg:justify-center p-4 lg:my-4">
           <Button setIsAllNews={setIsAllNews} 
                   setOtherData={setOtherData}
+                  setIsLoading={setIsLoading}
           />
         </nav>
       </header>
@@ -51,7 +53,7 @@ export default function page() {
         {isAllNews ? (
             <InfiniteScroll 
               dataLength={allData.length} 
-              next={()=> setPage(prev=> prev += 1)}
+              next={()=> setPage(prev => prev += 1)}
               hasMore={hasMore} 
               loader={
                 <span className="text-[#fff] text-[108px] font-bold w-full text-center block"> 
@@ -62,7 +64,9 @@ export default function page() {
               <Article data={allData}/>
             </InfiniteScroll>
           ):(
-            <Article data={otherData}/>
+            isLoading ? 
+              <span className="text-[#fff] text-[108px] font-bold w-full text-center block">載入中......</span>
+              : <Article data={otherData}/>
           )
         }
       <footer className="text-[#fff] w-full text-center py-8 font-black">
