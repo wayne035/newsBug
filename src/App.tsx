@@ -22,7 +22,7 @@ export default function page() {
   async function getAllData(page: string|number){
     if(allData.length < 1100){
       try{
-        const res = await fetch(import.meta.env.VITE_URL + `/${page}`)
+        const res = await fetch(import.meta.env.VITE_ALL_NEWS_URL + `/${page}`)
         const data = await res.json()
         if ( data.length === 0 ) return setHasMore(false)
         setAllData(pre=> [...pre, ...data])

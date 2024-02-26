@@ -41,7 +41,7 @@ export default memo(function Button({setIsAllNews, setOtherData, setIsLoading}: 
     }else{
       setIsLoading(true)
       try{
-        const res = await fetch(import.meta.env.VITE_URL + `/${newsName}`)
+        const res = await fetch(import.meta.env.VITE_NEWS_URL + `/${newsName}`)
         const data = await res.json()
         setOtherData(data)
         setCurrentNewsName(newsName)
